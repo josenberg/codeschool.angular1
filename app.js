@@ -27,11 +27,23 @@
           full: "images/pentagonal-02-full.jpg",
           thumb: "images/pentagonal-02-thumb.jpg"
         }]
-      }]
+      }];
   // Note that the controller is inside the app module
   app.controller('StoreController', function() {
     this.products = gems;
   });
 
+  app.controller('PanelController', function() {
+    this.tab = 1;
+
+    this.selectTab = function(tab) {
+        this.tab = tab;
+    };
+
+    this.isSelect = function(tab) {
+        return this.tab === tab;
+    };
+
+  });
 
 })();
