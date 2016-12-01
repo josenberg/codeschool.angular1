@@ -18,7 +18,7 @@
           <em class="pull-right"> {{product.price | currency}} </em>
 
           <!-- Image Gallery  -->
-           <div class="gallery" ng-controller="GalleryController as gallery">            
+           <div class="gallery" ng-controller="GalleryController as gallery">
              <img class="img img-circle img-thumbnail center-block" ng-src="{{product.images[gallery.currentId].full}}" />
              <ul class="clearfix">
                <li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
@@ -52,7 +52,34 @@
              </div>
              <div ng-show="panel.isSelect(3)" class="panel">
                <h4>Reviews</h4>
-               <blockquote> None Yet </blockquote>
+               <blockquote ng-repeat="review in product.reviews">
+                 <b> stars: {{review.stars}} </b><br/ >
+                 {{review.body}} <br />
+                 <cite> {{review.author}} </cite>
+               </blockquote>
+
+               <form name="reviewForm">
+                 Preview<br />
+                 <blockquote>
+                   <b> stars: {{review.stars}} </b>
+                   {{review.body}}<br />
+                   <cite> {{review.author}} </cite>
+                 </blockquote>
+
+
+                 <select ng-model="review.stars">
+                    <option value=1> 1 star </option>
+                    <option value=2> 2 stars </option>
+                    <option value=3> 3 stars </option>
+                    <option value=4> 4 stars </option>
+                    <option value=5> 5 stars </option>
+                 </select> <br />
+                 <textarea ng-model="review.body"></textarea> <br />
+                 <label> by </label>
+                 <input type="text"  ng-model="review.author" /> <br />
+                 <input type="submit" value="Submit" />
+               </form>
+
              </div>
            </section>
         </li>
