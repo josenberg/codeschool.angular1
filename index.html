@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title> Angular Code School Course </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
   </head>
   <body ng-controller="StoreController as store">
 
@@ -62,7 +63,7 @@
 
 
                <form name="reviewForm" ng-controller="ReviewController as reviewCtrl"
-                        ng-submit="reviewCtrl.addReview(product)">
+                        ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
 
 
                  <h4>Submit a Review</h4>
@@ -75,16 +76,17 @@
 
                 <!--  Review Form -->
                  <fieldset class="form-group">
-                   <select class="form-control" ng-model="reviewCtrl.review.stars" ng-options="stars for stars in [5,4,3,2,1]"  title="Stars">
+                   <select class="form-control" ng-model="reviewCtrl.review.stars" ng-options="stars for stars in [5,4,3,2,1]"  title="Stars" required>
                      <option value="">Rate the Product</option>
                    </select>
                  </fieldset>
                  <fieldset class="form-group">
-                   <textarea class="form-control" ng-model="reviewCtrl.review.body" placeholder="Write a short review of the product..." title="Review"></textarea>
+                   <textarea class="form-control" ng-model="reviewCtrl.review.body" placeholder="Write a short review of the product..." title="Review" required></textarea>
                  </fieldset>
                  <fieldset class="form-group">
-                   <input type="email" class="form-control" ng-model="reviewCtrl.review.author" placeholder="jimmyDean@example.org" title="Email"  />
+                   <input type="email" class="form-control" ng-model="reviewCtrl.review.author" placeholder="jimmyDean@example.org" title="Email" required />
                  </fieldset>
+                 <p> The form is valid: {{reviewForm.$valid}} </p>
                  <fieldset class="form-group">
                    <input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
                  </fieldset>
