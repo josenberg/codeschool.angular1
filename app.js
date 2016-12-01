@@ -74,13 +74,20 @@
 
   app.controller('PanelController', function() {
     this.tab = 1;
-
     this.selectTab = function(tab) {
         this.tab = tab;
     };
-
     this.isSelect = function(tab) {
         return this.tab === tab;
+    };
+  });
+
+  app.controller('ReviewController', function() {
+    this.review = {};
+
+    this.addReview = function(product) {
+      product.reviews.push(this.review);
+      this.review = {};
     };
 
   });
