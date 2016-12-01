@@ -53,16 +53,48 @@
              <div ng-show="panel.isSelect(3)" class="panel">
                <h4>Reviews</h4>
                <blockquote ng-repeat="review in product.reviews">
-                 <b> stars: {{review.stars}} </b><br/ >
-                 {{review.body}} <br />
+                 <b> stars: {{review.stars}} </b>
+                 {{review.body}}
                  <cite> {{review.author}} </cite>
                </blockquote>
 
+
+
+
                <form name="reviewForm">
+
+
+                 <h4>Submit a Review</h4>
+                 <!--  Live Preview -->
+                 <blockquote>
+                   <strong>{{review.stars}} Stars</strong>
+                   {{review.body}}
+                   <cite class="clearfix">— {{review.author}}</cite>
+                 </blockquote>
+
+                <!--  Review Form -->
+                 <fieldset class="form-group">
+                   <select class="form-control" ng-model="review.stars" ng-options="stars for stars in [5,4,3,2,1]"  title="Stars">
+                     <option value="">Rate the Product</option>
+                   </select>
+                 </fieldset>
+                 <fieldset class="form-group">
+                   <textarea class="form-control" ng-model="review.body" placeholder="Write a short review of the product..." title="Review"></textarea>
+                 </fieldset>
+                 <fieldset class="form-group">
+                   <input type="email" class="form-control" ng-model="review.author" placeholder="jimmyDean@example.org" title="Email"  />
+                 </fieldset>
+                 <fieldset class="form-group">
+                   <input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+                 </fieldset>
+               </form>
+
+
+               <!-- <form name="reviewForm">
                  Preview<br />
                  <blockquote>
                    <b> stars: {{review.stars}} </b>
-                   {{review.body}}<br />
+                   {{review.body}}
                    <cite> {{review.author}} </cite>
                  </blockquote>
 
@@ -78,7 +110,7 @@
                  <label> by </label>
                  <input type="text"  ng-model="review.author" /> <br />
                  <input type="submit" value="Submit" />
-               </form>
+               </form> -->
 
              </div>
            </section>
