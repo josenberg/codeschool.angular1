@@ -6,16 +6,24 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   </head>
   <body ng-controller="StoreController as store">
-    <div ng-repeat="product in store.products">
-    <!-- Settings this directive allow us to acess the controller in this HTML -->
-    <div ng-hide="product.soldOut">
-      <!-- the scope of the controller are binded to be inside of this div, tryng to acess it from outside will not work-->
-      <h1> {{product.name}} </h1>
-      <h2> {{product.price}} </h2>
-      <p> {{product.description}} </p>
-      <!-- there is some built-in directives, the ng-show by sample can hide or show a element based on a boolean property -->
-      <button ng-show="product.canPurchase"> Add to Cart </button>
-    </div>
+    <ul class="list-group">
+      <!-- Settings this directive allow us to acess the controller in this HTML -->
+        <li ng-repeat="product in store.products">
+          <h3>
+            {{product.name}}
+          </h3>
+          <em class="pull-right"> {{product.price | currency}} </em>
+
+          <!-- Image Gallery  -->
+           <div class="gallery">
+             <img class="img img-circle img-thumbnail center-block" ng-src="{{product.images[0].full}}" />
+             <ul class="clearfix">
+               <li class="small-image pull-left thumbnail" ng-repeat="image in product.images"> <img ng-src="{{image.thumb}}" /> </li>
+             </ul>
+           </div>
+        </li>
+    </ul>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
     <script src="app.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
