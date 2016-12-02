@@ -59,18 +59,25 @@
     this.products = gems;
   });
 
-  app.controller('GalleryController', function() {
-    this.currentId = 0;
+  app.directive("productGallery", function() {
+    return {
+      restrict: "E",
+      templateUrl: "product-gallery.html",
+      controller: function() {
+        this.currentId = 0;
 
-    this.setCurrentId = function(value) {
-      this.currentId = value || 0;
-    }
+        this.setCurrentId = function(value) {
+          this.currentId = value || 0;
+        }
 
-    this.isCurrentId = function(value) {
-      return this.currentId === value;
-    }
-  })
+        this.isCurrentId = function(value) {
+          return this.currentId === value;
+        }
+      },
+      controllerAs: "gallery"
 
+    };
+  });
 
   app.controller('ReviewController', function() {
     this.review = {};
@@ -112,7 +119,5 @@
       controllerAs: "panel"
     };
   });
-
-
 
 })();
