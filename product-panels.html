@@ -1,0 +1,61 @@
+<!-- menu of each gem -->
+
+  <ul class="nav nav-pills">
+    <li ng-class="{ active: panel.isSelect(1) }">
+      <a href ng-click="panel.selectTab(1)">Description</a>
+    </li>
+    <li ng-class="{ active: panel.isSelect(2) }">
+      <a href ng-click="panel.selectTab(2)">Specifications</a>
+    </li>
+
+    <li ng-class="{ active: panel.isSelect(3) }">
+       <a href ng-click="panel.selectTab(3)">Reviews</a>
+     </li>
+  </ul>
+
+  <div ng-show="panel.isSelect(1)" class="panel">
+    <h4>Description</h4>
+    <blockquote>{{product.description}}</blockquote>
+  </div>
+  <product-specs ng-show="panel.isSelect(2)" class="panel">
+
+  </product-specs>
+  <div ng-show="panel.isSelect(3)" class="panel">
+    <h4>Reviews</h4>
+    <blockquote ng-repeat="review in product.reviews">
+      <b> stars: {{review.stars}} </b>
+      {{review.body}}
+      <cite> {{review.author}} on {{review.createdOn | date}} </cite>
+    </blockquote>
+
+
+    <form name="reviewForm" ng-controller="ReviewController as reviewCtrl"
+             ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+
+
+      <h4>Submit a Review</h4>
+      <!--  Live Preview -->
+      <blockquote>
+        <strong>{{reviewCtrl.review.stars}} Stars</strong>
+        {{reviewCtrl.review.body}}
+        <cite class="clearfix">— {{reviewCtrl.review.author}}</cite>
+      </blockquote>
+
+     <!--  Review Form -->
+      <fieldset class="form-group">
+        <select class="form-control" ng-model="reviewCtrl.review.stars" ng-options="stars for stars in [5,4,3,2,1]"  title="Stars" required>
+          <option value="">Rate the Product</option>
+        </select>
+      </fieldset>
+      <fieldset class="form-group">
+        <textarea class="form-control" ng-model="reviewCtrl.review.body" placeholder="Write a short review of the product..." title="Review" required></textarea>
+      </fieldset>
+      <fieldset class="form-group">
+        <input type="email" class="form-control" ng-model="reviewCtrl.review.author" placeholder="jimmyDean@example.org" title="Email" required />
+      </fieldset>
+      <p> The form is valid: {{reviewForm.$valid}} </p>
+      <fieldset class="form-group">
+        <input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+      </fieldset>
+    </form>
+  </div>

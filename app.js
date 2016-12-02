@@ -72,16 +72,6 @@
   })
 
 
-  app.controller('PanelController', function() {
-    this.tab = 1;
-    this.selectTab = function(tab) {
-        this.tab = tab;
-    };
-    this.isSelect = function(tab) {
-        return this.tab === tab;
-    };
-  });
-
   app.controller('ReviewController', function() {
     this.review = {};
 
@@ -105,5 +95,24 @@
       templateUrl: "product-specs.html"
     }
   });
+
+  app.directive("productPanels", function() {
+    return {
+      restrict: "E",
+      templateUrl: "product-panels.html",
+      controller: function() {
+        this.tab = 1;
+        this.selectTab = function(tab) {
+            this.tab = tab;
+        };
+        this.isSelect = function(tab) {
+            return this.tab === tab;
+        };
+      },
+      controllerAs: "panel"
+    };
+  });
+
+
 
 })();
