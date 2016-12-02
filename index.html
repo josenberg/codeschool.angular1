@@ -13,10 +13,7 @@
     <ul class="list-group">
       <!-- Settings this directive allow us to acess the controller in this HTML -->
         <li ng-repeat="product in store.products">
-          <h3>
-            {{product.name}}
-          </h3>
-          <em class="pull-right"> {{product.price | currency}} </em>
+          <product-title> </product-title>
 
           <!-- Image Gallery  -->
            <div class="gallery" ng-controller="GalleryController as gallery">
