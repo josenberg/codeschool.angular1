@@ -44,10 +44,9 @@
                <h4>Description</h4>
                <blockquote>{{product.description}}</blockquote>
              </div>
-             <div ng-show="panel.isSelect(2)" class="panel">
-               <h4>Specifications</h4>
-               <blockquote> None Yet </blockquote>
-             </div>
+             <product-specs ng-show="panel.isSelect(2)" class="panel">
+
+             </product-specs>
              <div ng-show="panel.isSelect(3)" class="panel">
                <h4>Reviews</h4>
                <blockquote ng-repeat="review in product.reviews">
@@ -55,8 +54,6 @@
                  {{review.body}}
                  <cite> {{review.author}} on {{review.createdOn | date}} </cite>
                </blockquote>
-
-
 
 
                <form name="reviewForm" ng-controller="ReviewController as reviewCtrl"

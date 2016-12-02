@@ -99,4 +99,11 @@
     };
   });
 
+  app.directive("productSpecs", function() {
+    return {
+      restrict: "E",
+      templateUrl: "product-specs.html"
+    }
+  });
+
 })();
